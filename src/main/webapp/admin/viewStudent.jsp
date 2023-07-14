@@ -1,0 +1,45 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+  <%
+  response.addHeader("Pragma", "no-cache"); //https://www.oreilly.com/library/view/javaserver-pages-3rd/0596005636/ch17s06.html
+  response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+  response.addHeader("Cache-Control", "pre-check=0, post-check=0");
+  response.setDateHeader("Expires", 0);
+
+  if(session.getAttribute("sessionEmail")==null)	  
+      response.sendRedirect("/myproject3.0/login.jsp");
+  %>     
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<title>View student</title>
+</head>
+<body>
+<div class="container">
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">             
+  		<a class="navbar-brand" href="EquipmentController?action=listAll">List All</a>
+  		<a class="navbar-brand" href="AdminController?action=listAdmin">Manage Admin</a>
+  		<a class="navbar-brand" class="active" href="StudentController?action=listStudent">Manage student</a>
+  		<a class="navbar-brand" href="EquipmentController?action=listEquipment">Manage Equipment</a> 
+  		<a class="navbar-brand" href="RegisterController">Register User</a>
+  		<a class="navbar-brand" href="LogoutController">Logout</a>       		
+    </div>
+  </nav>
+</div>
+<div class="container">
+<br><br>
+<h3>View Student</h3>
+<br><br>
+		<label for="id">student ID</label>: <c:out value="${student.sid}"/><br>
+    	<label for="name">Name</label>: <c:out value="${student.name}"/><br>    	
+    	<label for="programmecode">Programme Code</label>: <c:out value="${student.programmecode}"/><br>	
+      	<label for="programmename">Programme Name</label>: <c:out value="${student.programmename}" /><br>    	
+        <a href="StudentController?action=listStudent" class="btn btn-warning">student List</a>
+        
+</div>
+</body>
+</html>
